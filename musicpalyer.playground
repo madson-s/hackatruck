@@ -1,0 +1,42 @@
+class Song {
+    var name: String
+    var duration: Int
+    init(name: String, duration: Int) {
+        self.name = name
+        self.duration = duration
+    }
+}
+
+func secondsToTime(seconds: Int) -> String {
+    var second = seconds
+    
+    let hour = "\(second / (60 * 60))"
+    second = second % (60 * 60)
+    
+    let minute = "\(second / 60)"
+    second = second % 60
+    
+    return "\(hour):\(minute):\(second)"
+}
+
+func play(song: Song) {
+    var currentTime = 0
+    while true {
+        if currentTime > song.duration {
+            print("Musica \(song.name) finalizada!")
+            break
+        }
+        print("Tocando \(song.name) >> \(secondsToTime(seconds: currentTime))")
+        currentTime += 1
+    }
+
+}
+
+let song1 = Song(name: "song1.mp3", duration: 60)
+let song2 = Song(name: "song2.mp3", duration: 120)
+
+let playlist: [Song] = [song1, song2]
+
+for song in playlist {
+    play(song: song)
+}
